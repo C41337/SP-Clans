@@ -1,5 +1,5 @@
 name: Clans
-main: com.silvermineproductions.Clans.main
+main: com.silvermineproductions.main.main
 version: 1.0.1
 author: Silvermine Productions
 depend: [Vault]
