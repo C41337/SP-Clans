@@ -56,6 +56,12 @@ public class main extends JavaPlugin
 		
 		startScheduleTasks();
 	}
+	
+	@Override
+	public void onDisable()
+	{
+		mysql.close();
+	}
 			
 	private void startScheduleTasks() {
 		
