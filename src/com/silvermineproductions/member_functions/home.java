@@ -68,21 +68,24 @@ public class home
 				return true;
 			}
 			
-			Long time = System.currentTimeMillis();
-			if(cooldowns.containsKey(p.getName()))
+			if(!p.isOp())
 			{
-				Long lastUsage = cooldowns.get(p.getName());
-				
-				if(lastUsage + cooldown*1000 > time)
+				Long time = System.currentTimeMillis();
+				if(cooldowns.containsKey(p.getName()))
 				{
-					Long stilltime = ((lastUsage + cooldown*1000) - time) / 1000;
-					p.sendMessage("" + ChatColor.RED + stilltime + "sec " + ChatColor.WHITE + "cooldown");
-					return true;
+					Long lastUsage = cooldowns.get(p.getName());
+					
+					if(lastUsage + cooldown*1000 > time)
+					{
+						Long stilltime = ((lastUsage + cooldown*1000) - time) / 1000;
+						p.sendMessage("" + ChatColor.RED + stilltime + "sec " + ChatColor.WHITE + "cooldown");
+						return true;
+					}
 				}
+				cooldowns.put(p.getName(), time);
 			}
 			
 			p.teleport(loc);
-			cooldowns.put(p.getName(), time);
 			return true;
 		}
 		else
