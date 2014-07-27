@@ -8,7 +8,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import com.silvermineproductions.Clans.main;
+import com.silvermineproductions.main.main;
 import com.silvermineproductions.mysql.mysql;
 import com.silvermineproductions.mysql.mysqlcmd;
 

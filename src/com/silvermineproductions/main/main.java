@@ -4,7 +4,6 @@ package com.silvermineproductions.main;
 import net.milkbowl.vault.chat.Chat;
 import net.milkbowl.vault.economy.Economy;
 
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import com.silvermineproductions.cmd.clanCmd;
@@ -24,11 +23,11 @@ public class main extends JavaPlugin
 	
 	@Override
 	public void onEnable() 
-	{
-		this.setupEconomy();
-		this.setupChat();
+	{		
+		vault.setupEconomy();
+		vault.setupChat();
 		
-		loadConfiguration();
+		config.loadConfiguration(this);
 		System.out.print("[Clans] Enabled");
 		
 		clanCmd.name = this.getDescription().getName();
@@ -89,41 +88,5 @@ public class main extends JavaPlugin
 	private void getCommands() {
 		getCommand("clan").setExecutor(new clanCmd());		
 	}
-	
-    public void loadConfiguration(){
-    	this.getConfig().addDefault("Clans.mysql.IP", "localhost");
-		this.getConfig().addDefault("Clans.mysql.port", 3306);
-		this.getConfig().addDefault("Clans.mysql.user", "user");
-		this.getConfig().addDefault("Clans.mysql.password", "");
-		this.getConfig().addDefault("Clans.mysql.database", "db");
-		this.getConfig().addDefault("Clans.mysql.Jobs_Database", "jobs");
-		
-		this.getConfig().addDefault("Economy.form_Clan.price", 500000);
-		
-		this.getConfig().addDefault("CooldownTime", 0);
-	    
-	    this.getConfig().options().copyDefaults(true); 
-	    
-	    this.saveConfig();
-    }
-    
-    private boolean setupEconomy()
-    {
-        RegisteredServiceProvider<Economy> economyProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.economy.Economy.class);
-        if (economyProvider != null) {
-            economy = economyProvider.getProvider();
-        }
-
-        return (economy != null);
-    }
-    private boolean setupChat()
-    {
-        RegisteredServiceProvider<Chat> chatProvider = getServer().getServicesManager().getRegistration(net.milkbowl.vault.chat.Chat.class);
-        if (chatProvider != null) {
-            chat = chatProvider.getProvider();
-        }
-
-        return (chat != null);
-    }
 
 }

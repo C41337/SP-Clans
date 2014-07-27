@@ -13,7 +13,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 
-import com.silvermineproductions.Clans.main;
+import com.silvermineproductions.main.main;
 import com.silvermineproductions.mysql.mysqlcmd;
 
 public class region_events implements Listener 

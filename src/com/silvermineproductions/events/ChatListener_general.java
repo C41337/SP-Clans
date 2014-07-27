@@ -8,9 +8,9 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.AsyncPlayerChatEvent;
 
-import com.silvermineproductions.Clans.main;
 import com.silvermineproductions.jobs.getTitle;
 import com.silvermineproductions.jobs.getjob;
+import com.silvermineproductions.main.main;
 import com.silvermineproductions.mysql.mysqlcmd;
 
 public class ChatListener_general implements Listener 

@@ -3,8 +3,8 @@ package com.silvermineproductions.member_functions;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
-import com.silvermineproductions.Clans.main;
 import com.silvermineproductions.cmd.clanCmd;
+import com.silvermineproductions.main.main;
 import com.silvermineproductions.mysql.mysql;
 import com.silvermineproductions.mysql.mysqlcmd;
 
