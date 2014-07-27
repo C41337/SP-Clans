@@ -1,0 +1,33 @@
+name: Clans
+main: com.silvermineproductions.Clans.main
+version: alpha
+author: Silvermine Productions
+depend: [Vault]
+commands:
+  clan:
+    aliases: [c, cl]
+    description: Clans Plugin [Silvermine Productions]
+permissions:
+    Clans.*:
+        description: Gibt Zugriff auf alle Clans Befehle
+        children:
+            Clans.create: true
+            Clans.join: true
+            Clans.del: true
+            Clans.tag: true
+            Clans.name: true
+    Clans.create:
+        description: create Clan
+        default: op
+    Clans.join:
+        description: Join a Clan
+        default: true
+    Clans.del:
+        description: Join a Clan
+        default: op
+    Clans.tag:
+        description: Join a Clan
+        default: op
+    Clans.name:
+        description: Join a Clan
+        default: op
