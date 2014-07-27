@@ -1,5 +1,7 @@
 package com.silvermineproductions.cmd;
 
+import java.util.Collection;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -25,7 +27,6 @@ import com.silvermineproductions.member_functions.list;
 import com.silvermineproductions.member_functions.request;
 import com.silvermineproductions.member_functions.show;
 import com.silvermineproductions.regions.region;
-import com.silvermineproductions.regions.regions_function;
 
 public class clanCmd implements CommandExecutor
 {
@@ -201,34 +202,15 @@ public class clanCmd implements CommandExecutor
 				
 				if(args[0].equalsIgnoreCase("test"))
 				{
-					p.sendMessage(String.valueOf(regions_function.Mittelpunkt(
-							Integer.parseInt(args[1]), 
-							Integer.parseInt(args[2]), 
-							Integer.parseInt(args[3]), 
-							Integer.parseInt(args[4]), 
-							Integer.parseInt(args[5]), 
-							Integer.parseInt(args[6]))[0]));
-					p.sendMessage(String.valueOf(regions_function.Mittelpunkt(
-							Integer.parseInt(args[1]), 
-							Integer.parseInt(args[2]), 
-							Integer.parseInt(args[3]), 
-							Integer.parseInt(args[4]), 
-							Integer.parseInt(args[5]), 
-							Integer.parseInt(args[6]))[1]));
-					p.sendMessage(String.valueOf(regions_function.Mittelpunkt(
-							Integer.parseInt(args[1]), 
-							Integer.parseInt(args[2]), 
-							Integer.parseInt(args[3]), 
-							Integer.parseInt(args[4]), 
-							Integer.parseInt(args[5]), 
-							Integer.parseInt(args[6]))[2]));
-					p.sendMessage(String.valueOf(regions_function.vektorlaenge(regions_function.Mittelpunkt(
-							Integer.parseInt(args[1]), 
-							Integer.parseInt(args[2]), 
-							Integer.parseInt(args[3]), 
-							Integer.parseInt(args[4]), 
-							Integer.parseInt(args[5]), 
-							Integer.parseInt(args[6])))));
+					Collection<? extends Player> colonline = Bukkit.getOnlinePlayers();
+					String per = "";
+					for(Player player : colonline) {
+						  per = player.getDisplayName();  
+						}
+					
+					System.out.print(colonline);
+					p.sendMessage(per);
+					p.sendMessage(String.valueOf(colonline.size()));
 					return true;
 				}
 				if(args[0].equalsIgnoreCase("loc"))

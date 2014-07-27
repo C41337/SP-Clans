@@ -1,5 +1,7 @@
 package com.silvermineproductions.events;
 
+import java.util.Collection;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -28,27 +30,25 @@ public class ChatListener_general implements Listener
     	
     	String format = getTitle.getJobTitle(p) + getjob.getJob(p) + "§f" + p.getDisplayName() + "> " + event.getMessage();
     	
-    	Player[] online = Bukkit.getOnlinePlayers();
+    	Collection<? extends Player> collonline = Bukkit.getOnlinePlayers();
     	
-    	int pCount = online.length;
-    	
-    	for(int i = 0; i < pCount; i++)
+    	for(Player online : collonline)
     	{
-    		if(mysqlcmd.getClidofMember(online[i].getName()) == mysqlcmd.getClidofMember(p.getName()))
+    		if(mysqlcmd.getClidofMember(online.getName()) == mysqlcmd.getClidofMember(p.getName()))
     		{
-    			clanChatFormat(p, online[i], format);
+    			clanChatFormat(p, online, format);
     		}
-    		else if(mysqlcmd.check_allies(p, online[i]))
+    		else if(mysqlcmd.check_allies(p, online))
     		{
-    			allyChatFormat(p, online[i], format);
+    			allyChatFormat(p, online, format);
     		}
-    		else if(mysqlcmd.check_war(p, online[i]))
+    		else if(mysqlcmd.check_war(p, online))
     		{
-    			warChatFormat(p, online[i], format);
+    			warChatFormat(p, online, format);
     		}
     		else
     		{
-    			normalChatFormat(p, online[i], format);
+    			normalChatFormat(p, online, format);
     		}	
     	}
     }

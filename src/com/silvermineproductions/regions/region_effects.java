@@ -1,5 +1,7 @@
 package com.silvermineproductions.regions;
 
+import java.util.Collection;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
@@ -10,22 +12,22 @@ public class region_effects
 {
 	public static void region_damage()
 	{
-		Player[] online = Bukkit.getServer().getOnlinePlayers();
-		int count = online.length;
-		for(int i = 0; i < count; i++)
+		Collection<? extends Player> collonline = Bukkit.getOnlinePlayers();
+
+		for(Player online : collonline)
 		{
-			Location loc = online[i].getLocation();
+			Location loc = online.getLocation();
 			int clid1 = mysqlcmd.getClid(mysqlcmd.check_region(loc));
-			int clid2 = mysqlcmd.getClidofMember(online[i].getName());
+			int clid2 = mysqlcmd.getClidofMember(online.getName());
 			if(clid1 != clid2 && loc != null && mysqlcmd.check_region(loc) != "")
 			{
-				if(!online[i].isOp())
+				if(!online.isOp())
 				{
-					if(online[i].getFoodLevel() > 10)
+					if(online.getFoodLevel() > 10)
 					{
-						online[i].setFoodLevel(10);
+						online.setFoodLevel(10);
 					}
-						online[i].setHealth(online[i].getHealth() - 1);
+						online.setHealth(online.getHealth() - 1);
 				}
 			}
 		}
@@ -33,21 +35,21 @@ public class region_effects
 	
 	public static void region_heal()
 	{
-		Player[] online = Bukkit.getServer().getOnlinePlayers();
-		int count = online.length;
-		for(int i = 0; i < count; i++)
+		Collection<? extends Player> collonline = Bukkit.getOnlinePlayers();
+		
+		for(Player online : collonline)
 		{
-			Location loc = online[i].getLocation();
+			Location loc = online.getLocation();
 			int clid1 = mysqlcmd.getClid(mysqlcmd.check_region(loc));
-			int clid2 = mysqlcmd.getClidofMember(online[i].getName());
+			int clid2 = mysqlcmd.getClidofMember(online.getName());
 			if(clid1 == clid2 && loc != null && mysqlcmd.check_region(loc) != "")
 			{
-				if(!online[i].isOp())
+				if(!online.isOp())
 				{
-					if(online[i].getFoodLevel() != 20 && online[i].getHealth() != 20)
+					if(online.getFoodLevel() != 20 && online.getHealth() != 20)
 					{
-						online[i].setHealth(online[i].getHealth() + 0.5);
-						online[i].setFoodLevel(online[i].getFoodLevel() + 1);
+						online.setHealth(online.getHealth() + 0.5);
+						online.setFoodLevel(online.getFoodLevel() + 1);
 					}
 				}
 			}
