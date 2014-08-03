@@ -724,7 +724,8 @@ public class mysqlcmd
 			 int clid = getClidofMember(name);
 			 
 			 Statement stmt = mysql.con.createStatement();
-			 ResultSet rs = stmt.executeQuery("SELECT * FROM applications, ally WHERE clid='" + clid + "'");
+			 ResultSet rs = stmt.executeQuery(""
+			 		+ "SELECT * FROM applications, ally WHERE clid2='" + clid + "' AND ally.assume='0'");
 			 rs.last();
 			 return rs.getRow();
 		 }
