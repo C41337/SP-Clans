@@ -39,5 +39,9 @@ public class tables
 		{
 			create_table.createtable("war");
 		}
+		if(testtables.test_table("region") == false)
+		{
+			create_table.createtable("region");
+		}
 	}
 }
