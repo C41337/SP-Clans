@@ -83,8 +83,8 @@ public class Member_Application
 					mysql.update("UPDATE leader SET messages='" + appl + "'");
 					p.sendMessage(ChatColor.BLUE + args[1] + ChatColor.GREEN + " succesfully joined your Clan");
 					
-					Player recv = Bukkit.getPlayer(args[1]);
-					if(recv.isOnline())
+					Player recv = null;
+					if((recv = Bukkit.getPlayer(args[1])) != null)
 					{
 						recv.sendMessage(ChatColor.GREEN + "Your application was accepted!");
 						recv.sendMessage(ChatColor.GREEN + "Your are now in the Clan: " + ChatColor.BLUE + mysqlcmd.clName(recv));
