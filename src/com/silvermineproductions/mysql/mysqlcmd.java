@@ -712,4 +712,36 @@ public class mysqlcmd
 		return "";
 	}
 	
+	public static int getMessages(Player p)
+	{
+		String name = p.getName();
+		int mid = getMid(name);
+		
+		try{
+		
+		 if(check_Leader(p) || check_Leader(p))
+		 {
+			 int clid = getClidofMember(name);
+			 
+			 Statement stmt = mysql.con.createStatement();
+			 ResultSet rs = stmt.executeQuery("SELECT * FROM applications, ally WHERE clid='" + clid + "'");
+			 rs.last();
+			 return rs.getRow();
+		 }
+		 else
+		 {
+			 Statement stmt = mysql.con.createStatement();
+			 ResultSet rs = stmt.executeQuery(
+					 "SELECT * FROM invite, applications WHERE mid='" + mid + "' OR midApplicant='" + mid +"'");
+			 rs.last();
+			 return rs.getRow();
+		 }
+		}catch(Exception e)
+		{
+			System.out.println(e);
+			return 0;
+		}
+		
+	}
+	
 }
