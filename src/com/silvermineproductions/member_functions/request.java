@@ -57,14 +57,9 @@ public class request
 					p.sendMessage(ChatColor.GREEN + "You succesfully joined the Clan " + args[1]);
 					
 					Player leader = Bukkit.getPlayer(mysqlcmd.getMemberName(mysqlcmd.getleader(args[1])));
-					if(leader.isOnline())
+					if(leader != null)
 					{
 						leader.sendMessage(ChatColor.GREEN + p.getName() + " joined your Clan");
-					}
-					else
-					{
-						p.performCommand("mail send " + mysqlcmd.getMemberName(mysqlcmd.leader(p.getName())) 
-								+ " " + p.getName() + " joined your Clan");
 					}
 					return true;
 				}

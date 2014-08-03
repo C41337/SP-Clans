@@ -29,11 +29,6 @@ public class ally
 						{
 							Bukkit.getPlayer(stleader).sendMessage(mysqlcmd.clName(p) + " want to be your ally");
 						}
-						else
-						{
-							String command = "mail send " + stleader + " " + mysqlcmd.clName(p) + " want to be your ally";					
-							p.performCommand(command);
-						}
 						p.sendMessage(ChatColor.GREEN + "You succesfully send to " + args[1] + "");
 					}
 					else

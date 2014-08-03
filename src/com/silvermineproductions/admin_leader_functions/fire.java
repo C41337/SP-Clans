@@ -1,5 +1,6 @@
 package com.silvermineproductions.admin_leader_functions;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 
@@ -8,6 +9,7 @@ import com.silvermineproductions.mysql.mysqlcmd;
 
 public class fire 
 {
+	@SuppressWarnings("deprecation")
 	public static boolean clFire(Player p, String[] args)
 	{
 		if(mysqlcmd.check_Leader(p) || mysqlcmd.check_Moderator(p))
@@ -21,7 +23,11 @@ public class fire
 						mysql.update("UPDATE member SET clid='0' WHERE memName='" + args[1] + "'");
 						p.sendMessage(ChatColor.GREEN + "Succesfully fired " + args[1]);
 						
-						p.performCommand("mail send " + args[1] + " You are fired");				
+						Player fired = null;
+						if((fired =Bukkit.getPlayer(args[1])) != null)
+						{
+							fired.sendMessage(ChatColor.RED + "You are fired by " + p.getName());
+						}
 						return true;
 					}
 					else

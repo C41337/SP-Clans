@@ -38,8 +38,10 @@ public class join
 								p.sendMessage(ChatColor.GREEN + "You succesfully apply for the Clan " + args[1]);
 								
 								Player leader = Bukkit.getPlayer(mysqlcmd.getMemberName(mysqlcmd.getleader(args[1])));
-									p.performCommand("mail send " + leader.getName() + " " 
-											+ p.getName() + " want to join your Clan");
+								if(leader != null)
+								{
+									p.sendMessage(ChatColor.GREEN + "[Clans] " + p.getName() + " wants to join your clan");
+								}
 								
 								return true;
 							}
