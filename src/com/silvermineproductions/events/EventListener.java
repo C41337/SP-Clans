@@ -1,5 +1,6 @@
 package com.silvermineproductions.events;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.entity.Projectile;
 import org.bukkit.event.EventHandler;
@@ -26,6 +27,10 @@ public class EventListener implements Listener
 		if(mysqlcmd.check_Member_Name(p.getName()) == false)
 		{
 			mysql.update("INSERT INTO member (memName, clid) VALUES ('" + p.getName() + "', 0)");
+		}
+		else
+		{
+			p.sendMessage(ChatColor.BLUE + "[Clans]" +ChatColor.WHITE + " You have " + mysqlcmd.getMessages(p) + " new messages");
 		}
 	}
 	
