@@ -55,6 +55,14 @@ public class region
 				}
 				
 			}
+			else
+			{
+				p.sendMessage("/clan rg create");
+			}
+		}
+		else
+		{
+			p.sendMessage(ChatColor.RED + "You don't have permissions to perform this command");
 		}
 	}
 	
