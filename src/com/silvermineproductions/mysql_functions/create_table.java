@@ -82,5 +82,20 @@ public class create_table
 					"PRIMARY KEY (`wid`) " +
 					") ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1");
 		}
+		if(tbl_name == "region")
+		{
+			mysql.update("CREATE TABLE IF NOT EXISTS `region` (" +
+					"`rgid` bigint(20) NOT NULL AUTO_INCREMENT, " +
+					"`name` varchar(255) NOT NULL, " +
+					"`minX` int(10) NOT NULL, " +
+					"`minY` int(10) NOT NULL, " +
+					"`minZ` int(10) NOT NULL, " +
+					"`maxX` int(10) NOT NULL, " +
+					"`maxY` int(10) NOT NULL, " +
+					"`maxZ` int(10) NOT NULL, " +
+					"`world` varchar(255) NOT NULL, " +
+					"PRIMARY KEY (`rgid`) " +
+					") ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=2 ");
+		}
 	}
 }
