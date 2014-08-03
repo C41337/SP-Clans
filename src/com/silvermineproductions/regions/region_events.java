@@ -104,56 +104,59 @@ public class region_events implements Listener
 	{
 		Player p = event.getPlayer();
 		
-		if(p.getItemInHand().getType() == Material.FEATHER)
+		if(mysqlcmd.check_Leader(p))
 		{
-			Location loc = event.getClickedBlock().getLocation();
-			Material cliBlock = event.getClickedBlock().getType();
-			
-			if(cliBlock.isSolid() && loc != null && cliBlock != null)
+			if(p.getItemInHand().getType() == Material.FEATHER)
 			{
-				if(event.getAction() == Action.LEFT_CLICK_BLOCK)
+				Location loc = event.getClickedBlock().getLocation();
+				Material cliBlock = event.getClickedBlock().getType();
+				
+				if(cliBlock.isSolid() && loc != null && cliBlock != null)
 				{
-					if(mysqlcmd.check_region(loc) == "" 
-							|| mysqlcmd.getClid(mysqlcmd.check_region(loc)) == mysqlcmd.getClidofMember(p.getName()))
+					if(event.getAction() == Action.LEFT_CLICK_BLOCK)
 					{
-						region.hashloc1.put(p.getName(), loc);
-						p.sendMessage(ChatColor.GREEN + "pos1 set");
+						if(mysqlcmd.check_region(loc) == "" 
+								|| mysqlcmd.getClid(mysqlcmd.check_region(loc)) == mysqlcmd.getClidofMember(p.getName()))
+						{
+							region.hashloc1.put(p.getName(), loc);
+							p.sendMessage(ChatColor.GREEN + "pos1 set");
+						}
+						else
+						{
+							p.sendMessage(ChatColor.RED + "The Block is part of another clans region");
+						}
 					}
-					else
+					else if(event.getAction() == Action.RIGHT_CLICK_BLOCK)
 					{
-						p.sendMessage(ChatColor.RED + "The Block is part of another clans region");
-					}
-				}
-				else if(event.getAction() == Action.RIGHT_CLICK_BLOCK)
-				{
-					if(mysqlcmd.check_region(loc) == "" 
-							|| mysqlcmd.getClid(mysqlcmd.check_region(loc)) == mysqlcmd.getClidofMember(p.getName()))
-					{
-						region.hashloc2.put(p.getName(), loc);
-						p.sendMessage(ChatColor.GREEN + "pos2 set");
-					}
-					else
-					{
-						p.sendMessage(ChatColor.RED + "The Block is part of another clans region");
+						if(mysqlcmd.check_region(loc) == "" 
+								|| mysqlcmd.getClid(mysqlcmd.check_region(loc)) == mysqlcmd.getClidofMember(p.getName()))
+						{
+							region.hashloc2.put(p.getName(), loc);
+							p.sendMessage(ChatColor.GREEN + "pos2 set");
+						}
+						else
+						{
+							p.sendMessage(ChatColor.RED + "The Block is part of another clans region");
+						}
 					}
 				}
 			}
-		}
-		
-		else if(event.getAction() == Action.RIGHT_CLICK_BLOCK)
-		{			
-			int clid1 = mysqlcmd.getClid(mysqlcmd.check_region(event.getClickedBlock().getLocation()));
-			int clid2 = mysqlcmd.getClidofMember(p.getName());
-			if(mysqlcmd.check_region(event.getClickedBlock().getLocation()) != "")
-			{
-				if(clid1 != clid2)
+			
+			else if(event.getAction() == Action.RIGHT_CLICK_BLOCK)
+			{			
+				int clid1 = mysqlcmd.getClid(mysqlcmd.check_region(event.getClickedBlock().getLocation()));
+				int clid2 = mysqlcmd.getClidofMember(p.getName());
+				if(mysqlcmd.check_region(event.getClickedBlock().getLocation()) != "")
 				{
-					if(!mysqlcmd.check_allies(mysqlcmd.getclName(clid1), mysqlcmd.getclName(clid2)))
+					if(clid1 != clid2)
 					{
-						if(!mysqlcmd.check_war(clid1, clid2))
+						if(!mysqlcmd.check_allies(mysqlcmd.getclName(clid1), mysqlcmd.getclName(clid2)))
 						{
-							p.sendMessage(ChatColor.RED + "You aren't allowed to do this in a another clans area");
-							event.setCancelled(true);
+							if(!mysqlcmd.check_war(clid1, clid2))
+							{
+								p.sendMessage(ChatColor.RED + "You aren't allowed to do this in a another clans area");
+								event.setCancelled(true);
+							}
 						}
 					}
 				}
