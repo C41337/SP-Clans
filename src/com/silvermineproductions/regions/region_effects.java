@@ -19,7 +19,7 @@ public class region_effects
 			Location loc = online.getLocation();
 			int clid1 = mysqlcmd.getClid(mysqlcmd.check_region(loc));
 			int clid2 = mysqlcmd.getClidofMember(online.getName());
-			if(clid1 != clid2 && loc != null && mysqlcmd.check_region(loc) != "")
+			if(clid1 != clid2 && loc != null && mysqlcmd.check_region(loc) != "" && !mysqlcmd.check_allies(mysqlcmd.getclName(clid1), mysqlcmd.getclName(clid2)))
 			{
 				if(!online.isOp())
 				{
@@ -27,7 +27,10 @@ public class region_effects
 					{
 						online.setFoodLevel(10);
 					}
+					if(online.getHealth() != 0)
+					{
 						online.setHealth(online.getHealth() - 1);
+					}
 				}
 			}
 		}

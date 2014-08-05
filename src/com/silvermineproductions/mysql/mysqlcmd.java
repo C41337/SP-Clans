@@ -744,5 +744,28 @@ public class mysqlcmd
 		}
 		
 	}
+	public static boolean check_ally_request(String clName1, String clName2)
+	{
+		int clid1 = getClid(clName1),
+				clid2 = getClid(clName2);
+		
+		
+		try{
+			Statement stmt = mysql.con.createStatement();
+			ResultSet rs = stmt.executeQuery("SELECT 1 FROM ally WHERE clid1='" + clid1 + "' AND clid2='" + clid2 + "' AND assume='0' LIMIT 1");
+			
+			rs.last();
+			if(rs.getRow() == 1)
+			{
+				return true;
+			}
+			
+		}catch(Exception e)
+		{
+			System.out.println(e);
+		}
+		
+		return false;
+	}
 	
 }

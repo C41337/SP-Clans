@@ -150,13 +150,10 @@ public class region_events implements Listener
 				{
 					if(clid1 != clid2)
 					{
-						if(!mysqlcmd.check_allies(mysqlcmd.getclName(clid1), mysqlcmd.getclName(clid2)))
+						if(!mysqlcmd.check_war(clid1, clid2))
 						{
-							if(!mysqlcmd.check_war(clid1, clid2))
-							{
-								p.sendMessage(ChatColor.RED + "You aren't allowed to do this in a another clans area");
-								event.setCancelled(true);
-							}
+							p.sendMessage(ChatColor.RED + "You aren't allowed to do this in a another clans area");
+							event.setCancelled(true);
 						}
 					}
 				}
