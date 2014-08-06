@@ -20,7 +20,6 @@ public class main extends JavaPlugin
 	public static Economy economy = null;
 	public static Chat chat = null;
 	
-	
 	@Override
 	public void onEnable() 
 	{		
