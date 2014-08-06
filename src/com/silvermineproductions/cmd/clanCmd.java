@@ -1,6 +1,7 @@
 package com.silvermineproductions.cmd;
 
 import java.util.Collection;
+
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
@@ -18,6 +19,7 @@ import com.silvermineproductions.admin_leader_functions.description;
 import com.silvermineproductions.admin_leader_functions.fire;
 import com.silvermineproductions.admin_leader_functions.invite;
 import com.silvermineproductions.admin_leader_functions.moderator;
+import com.silvermineproductions.admin_leader_functions.war;
 import com.silvermineproductions.member_functions.form;
 import com.silvermineproductions.member_functions.help;
 import com.silvermineproductions.member_functions.home;
@@ -187,6 +189,12 @@ public class clanCmd implements CommandExecutor
 				if(args[0].equalsIgnoreCase("ally"))
 				{
 					ally.addally(p, args);
+					return true;
+				}
+				//Kommando war
+				if(args[0].equalsIgnoreCase("war"))
+				{
+					war.declwar(p, args);
 					return true;
 				}
 				
