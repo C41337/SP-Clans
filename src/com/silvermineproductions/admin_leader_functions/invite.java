@@ -25,14 +25,9 @@ public class invite
 					
 					
 					Player rec = Bukkit.getPlayer(args[1]);
-					if(rec.isOnline())
+					if(rec != null)
 					{
 						rec.sendMessage(ChatColor.GREEN + "You are invited by " + p.getName() + " to join the Clan " 
-								+ mysqlcmd.clName(p));
-					}
-					else
-					{
-						p.performCommand("mail send " + args[1] + " You are invited by " + p.getName() + " to join the Clan " 
 								+ mysqlcmd.clName(p));
 					}
 

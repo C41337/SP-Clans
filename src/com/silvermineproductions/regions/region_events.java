@@ -120,10 +120,12 @@ public class region_events implements Listener
 						{
 							region.hashloc1.put(p.getName(), loc);
 							p.sendMessage(ChatColor.GREEN + "pos1 set");
+							event.setCancelled(true);
 						}
 						else
 						{
 							p.sendMessage(ChatColor.RED + "The Block is part of another clans region");
+							event.setCancelled(true);
 						}
 					}
 					else if(event.getAction() == Action.RIGHT_CLICK_BLOCK)
