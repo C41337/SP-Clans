@@ -1,8 +1,5 @@
 package com.silvermineproductions.cmd;
 
-import java.util.Collection;
-
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -20,6 +17,7 @@ import com.silvermineproductions.admin_leader_functions.fire;
 import com.silvermineproductions.admin_leader_functions.invite;
 import com.silvermineproductions.admin_leader_functions.moderator;
 import com.silvermineproductions.admin_leader_functions.war;
+import com.silvermineproductions.member_functions.chat;
 import com.silvermineproductions.member_functions.form;
 import com.silvermineproductions.member_functions.help;
 import com.silvermineproductions.member_functions.home;
@@ -197,6 +195,12 @@ public class clanCmd implements CommandExecutor
 					war.declwar(p, args);
 					return true;
 				}
+				//Kommando chat
+				if(args[0].equalsIgnoreCase("chat"))
+				{
+					chat.activate_chat(p, args);
+					return true;
+				}
 				
 				
 				
@@ -210,15 +214,7 @@ public class clanCmd implements CommandExecutor
 				
 				if(args[0].equalsIgnoreCase("test"))
 				{
-					Collection<? extends Player> colonline = Bukkit.getOnlinePlayers();
-					String per = "";
-					for(Player player : colonline) {
-						  per = player.getDisplayName();  
-						}
-					
-					System.out.print(colonline);
-					p.sendMessage(per);
-					p.sendMessage(String.valueOf(colonline.size()));
+					p.sendMessage(chat.chat.get(p));
 					return true;
 				}
 				if(args[0].equalsIgnoreCase("loc"))
