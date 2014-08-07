@@ -20,6 +20,7 @@ public class help
 			p.sendMessage(ChatColor.YELLOW + "/clan req [clan name] [yes|no]   //Answer a request");
 			p.sendMessage(ChatColor.YELLOW + "/clan leave   //Leave your  Clan");
 			p.sendMessage(ChatColor.YELLOW + "/clan home    //Teleports to the Clans home point");
+			p.sendMessage(ChatColor.YELLOW + "/clan chat [ally] //enable/disable clan/ally-chat");
 			p.sendMessage(ChatColor.YELLOW + "/clan <Clan Name>    //Show all Information about the Clan");
 			p.sendMessage(ChatColor.YELLOW + "/clan <Clan Name> [ally, war]   //Show the allies or enemies of a clan");
 			if(mysqlcmd.leader(p.getName()) != 0 || p.hasPermission("Clans.*"))
@@ -49,7 +50,8 @@ public class help
 				p.sendMessage(ChatColor.YELLOW + "/clan mod <Member Name>    //Promote a player to moderator");
 				p.sendMessage(ChatColor.YELLOW + "/clan demod <Member Name>    //Demote a player to moderator");
 				p.sendMessage(ChatColor.YELLOW + "/clan region/rg create    //Define a region");
-				p.sendMessage(ChatColor.YELLOW + "/clan ally <clan name>    //Define a region");
+				p.sendMessage(ChatColor.YELLOW + "/clan ally <clan name>    //send an ally request");
+				p.sendMessage(ChatColor.YELLOW + "/clan war <clan name>    //declare war or end war");
 				
 				return true;
 			}
