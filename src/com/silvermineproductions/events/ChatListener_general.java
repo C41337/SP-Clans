@@ -13,6 +13,7 @@ import org.bukkit.event.player.AsyncPlayerChatEvent;
 import com.silvermineproductions.jobs.getTitle;
 import com.silvermineproductions.jobs.getjob;
 import com.silvermineproductions.main.main;
+import com.silvermineproductions.member_functions.chat;
 import com.silvermineproductions.mysql.mysqlcmd;
 
 public class ChatListener_general implements Listener 
@@ -28,28 +29,50 @@ public class ChatListener_general implements Listener
     	
     	Player p = event.getPlayer();
     	
+    	String message = "> " + event.getMessage();
     	String format = getTitle.getJobTitle(p) + getjob.getJob(p) + "§f" + p.getDisplayName() + "> " + event.getMessage();
     	
     	Collection<? extends Player> collonline = Bukkit.getOnlinePlayers();
     	
     	for(Player online : collonline)
     	{
-    		if(mysqlcmd.getClidofMember(online.getName()) == mysqlcmd.getClidofMember(p.getName()))
+    		if(chat.chat.containsKey(p))
     		{
-    			clanChatFormat(p, online, format);
-    		}
-    		else if(mysqlcmd.check_allies(p, online))
-    		{
-    			allyChatFormat(p, online, format);
-    		}
-    		else if(mysqlcmd.check_war(p, online))
-    		{
-    			warChatFormat(p, online, format);
+    			if(chat.chat.get(p) == null)
+    			{
+    				if(mysqlcmd.getClidofMember(p.getName()) == mysqlcmd.getClidofMember(online.getName()))
+    				{
+    					privateClanChatFormat(p, online, message);
+    				}
+    			}
+    			else
+    			{
+    				if(mysqlcmd.getClidofMember(p.getName()) == mysqlcmd.getClidofMember(online.getName())
+    						|| mysqlcmd.check_allies(p, online))
+    				{
+    					privateAllyChatFormat(p, online, message);
+    				}
+    			}
     		}
     		else
     		{
-    			normalChatFormat(p, online, format);
-    		}	
+	    		if(mysqlcmd.getClidofMember(online.getName()) == mysqlcmd.getClidofMember(p.getName()))
+	    		{
+	    			clanChatFormat(p, online, format);
+	    		}
+	    		else if(mysqlcmd.check_allies(p, online))
+	    		{
+	    			allyChatFormat(p, online, format);
+	    		}
+	    		else if(mysqlcmd.check_war(p, online))
+	    		{
+	    			warChatFormat(p, online, format);
+	    		}
+	    		else
+	    		{
+	    			normalChatFormat(p, online, format);
+	    		}	
+    		}
     	}
     }
     
@@ -220,8 +243,56 @@ public class ChatListener_general implements Listener
    		else
    		{
    			reciever.sendMessage("<" + format);
+    	}	
+    }
+    
+    private static void privateClanChatFormat(Player sender, Player reciever, String message)
+    {
+    	if(mysqlcmd.check_Leader(sender))
+		{
+		    reciever.sendMessage("<" + ChatColor.GREEN + "** §f" + sender.getDisplayName() + message);
+		}
+		if(mysqlcmd.check_Moderator(sender))
+		{
+		    reciever.sendMessage("<" + ChatColor.GREEN + "* §f" + sender.getDisplayName() + message);
+		}
+		if(mysqlcmd.check_Leader(sender) == false && mysqlcmd.check_Moderator(sender) == false)
+		{
+		    reciever.sendMessage("<" + sender.getDisplayName() + " §f" + message);
+		}
+    }
+    private static void privateAllyChatFormat(Player sender, Player reciever, String message)
+    {
+    	if(mysqlcmd.getClidofMember(sender.getName()) == mysqlcmd.getClidofMember(reciever.getName()))
+    	{
+	    	if(mysqlcmd.check_Leader(sender))
+			{
+			    reciever.sendMessage("<" + ChatColor.GREEN + "** §f" + sender.getDisplayName() + message);
+			}
+			if(mysqlcmd.check_Moderator(sender))
+			{
+			    reciever.sendMessage("<" + ChatColor.GREEN + "* §f" + sender.getDisplayName() + message);
+			}
+			if(mysqlcmd.check_Leader(sender) == false && mysqlcmd.check_Moderator(sender) == false)
+			{
+			    reciever.sendMessage("<" + sender.getDisplayName() + " §f" + message);
+			}
     	}
-    	
+    	else
+    	{
+    		if(mysqlcmd.check_Leader(sender))
+			{
+			    reciever.sendMessage("<" + ChatColor.GREEN + "**" + mysqlcmd.clName(sender) + " §f" + sender.getDisplayName() + message);
+			}
+			if(mysqlcmd.check_Moderator(sender))
+			{
+			    reciever.sendMessage("<" + ChatColor.GREEN + "*" + mysqlcmd.clName(sender) + " §f" + sender.getDisplayName() + message);
+			}
+			if(mysqlcmd.check_Leader(sender) == false && mysqlcmd.check_Moderator(sender) == false)
+			{
+			    reciever.sendMessage("<" + ChatColor.GREEN + mysqlcmd.clName(sender) + " §f" + sender.getDisplayName() + message);
+			}
+    	}
     }
 
 }
