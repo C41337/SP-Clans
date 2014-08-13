@@ -16,20 +16,23 @@ public class region_effects
 
 		for(Player online : collonline)
 		{
-			Location loc = online.getLocation();
-			int clid1 = mysqlcmd.getClid(mysqlcmd.check_region(loc));
-			int clid2 = mysqlcmd.getClidofMember(online.getName());
-			if(clid1 != clid2 && loc != null && mysqlcmd.check_region(loc) != "" && !mysqlcmd.check_allies(mysqlcmd.getclName(clid1), mysqlcmd.getclName(clid2)))
+			if(online.hasPermission("region"))
 			{
-				if(!online.isOp())
+				Location loc = online.getLocation();
+				int clid1 = mysqlcmd.getClid(mysqlcmd.check_region(loc));
+				int clid2 = mysqlcmd.getClidofMember(online.getName());
+				if(clid1 != clid2 && loc != null && mysqlcmd.check_region(loc) != "" && !mysqlcmd.check_allies(mysqlcmd.getclName(clid1), mysqlcmd.getclName(clid2)))
 				{
-					if(online.getFoodLevel() > 10)
+					if(!online.isOp())
 					{
-						online.setFoodLevel(10);
-					}
-					if(online.getHealth() != 0)
-					{
-						online.setHealth(online.getHealth() - 1);
+						if(online.getFoodLevel() > 10)
+						{
+							online.setFoodLevel(10);
+						}
+						if(online.getHealth() != 0)
+						{
+							online.setHealth(online.getHealth() - 1);
+						}
 					}
 				}
 			}
@@ -42,17 +45,20 @@ public class region_effects
 		
 		for(Player online : collonline)
 		{
-			Location loc = online.getLocation();
-			int clid1 = mysqlcmd.getClid(mysqlcmd.check_region(loc));
-			int clid2 = mysqlcmd.getClidofMember(online.getName());
-			if(clid1 == clid2 && loc != null && mysqlcmd.check_region(loc) != "")
+			if(online.hasPermission("region"))
 			{
-				if(!online.isOp())
+				Location loc = online.getLocation();
+				int clid1 = mysqlcmd.getClid(mysqlcmd.check_region(loc));
+				int clid2 = mysqlcmd.getClidofMember(online.getName());
+				if(clid1 == clid2 && loc != null && mysqlcmd.check_region(loc) != "")
 				{
-					if(online.getFoodLevel() != 20 && online.getHealth() != 20)
+					if(!online.isOp())
 					{
-						online.setHealth(online.getHealth() + 0.5);
-						online.setFoodLevel(online.getFoodLevel() + 1);
+						if(online.getFoodLevel() != 20 && online.getHealth() != 20)
+						{
+							online.setHealth(online.getHealth() + 0.5);
+							online.setFoodLevel(online.getFoodLevel() + 1);
+						}
 					}
 				}
 			}
