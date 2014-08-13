@@ -1,4 +1,4 @@
-name: Clans
+name: SP-Clans
 main: com.silvermineproductions.main.main
 version: 1.1.0
 author: Silvermine Productions
@@ -9,7 +9,7 @@ commands:
     description: Clans Plugin [Silvermine Productions]
 permissions:
     Clans.*:
-        description: Gibt Zugriff auf alle Clans Befehle
+        description: all permissions
         children:
             Clans.create: true
             Clans.join: true
@@ -31,3 +31,15 @@ permissions:
     Clans.name:
         description: Join a Clan
         default: op
+    Clans.region:
+        description: define a region
+        default: true
+    Clans.chat:
+        description: enable clan/ally chat
+        default: true
+    Clans.relations:
+        description: declare war or ally with other clans
+        default: true
+    Clans.list:
+        description: list all clans
+        default: true

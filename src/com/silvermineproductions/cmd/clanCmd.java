@@ -80,13 +80,19 @@ public class clanCmd implements CommandExecutor
 				//Kommando list
 				if(args[0].equalsIgnoreCase("list") || args[0].equalsIgnoreCase("l"))
 				{
-					if(args.length != 1)
+					if(p.hasPermission("list"))
 					{
-						p.sendMessage("/clan list/l");
-						return true;	
-					}
+						if(args.length != 1)
+						{
+							p.sendMessage("/clan list/l");
+							return true;	
+						}
 					
-					list.listClan(p);
+						list.listClan(p);
+					} else
+					{
+						p.sendMessage(ChatColor.RED + "You have no permissions to perform this command");
+					}
 					return true;
 				}
 								
@@ -186,29 +192,49 @@ public class clanCmd implements CommandExecutor
 				//Kommando ally
 				if(args[0].equalsIgnoreCase("ally"))
 				{
-					ally.addally(p, args);
+					if(p.hasPermission("relations"))
+					{
+						ally.addally(p, args);
+					} else
+					{
+						p.sendMessage(ChatColor.RED + "You have no permissions to perform this command");
+					}
 					return true;
 				}
 				//Kommando war
 				if(args[0].equalsIgnoreCase("war"))
 				{
-					war.declwar(p, args);
+					if(p.hasPermission("relations"))
+					{
+						war.declwar(p, args);
+					} else
+					{
+						p.sendMessage(ChatColor.RED + "You have no permissions to perform this command");
+					}
 					return true;
 				}
 				//Kommando chat
 				if(args[0].equalsIgnoreCase("chat"))
 				{
-					chat.activate_chat(p, args);
+					if(p.hasPermission("chat"))
+					{
+						chat.activate_chat(p, args);
+					} else
+					{
+						p.sendMessage(ChatColor.RED + "You have no permissions to perform this command");
+					}
 					return true;
-				}
-				
-				
-				
-				
-				
+				}			
+				//region command
 				if(args[0].equalsIgnoreCase("region") || args[0].equalsIgnoreCase("rg"))
 				{
-					region.exec_region(p, args);
+					if(p.hasPermission("region"))
+					{
+						region.exec_region(p, args);
+					} else
+					{
+						p.sendMessage(ChatColor.RED + "You have no permissions to perform this command");
+					}
 					return true;
 				}
 				
