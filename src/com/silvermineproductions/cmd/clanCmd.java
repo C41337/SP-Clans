@@ -55,7 +55,7 @@ public class clanCmd implements CommandExecutor
 			{
 				if(args.length == 0)
 				{
-					p.sendMessage(ChatColor.BLUE + "[Clans]");
+					p.sendMessage(ChatColor.BLUE + "[SP-Clans]");
 					p.sendMessage(ChatColor.GREEN + "Name: " + name);
 					p.sendMessage(ChatColor.GREEN + "Version: " + version);
 					p.sendMessage(ChatColor.GREEN+ "Author: " + author);
@@ -80,7 +80,7 @@ public class clanCmd implements CommandExecutor
 				//Kommando list
 				if(args[0].equalsIgnoreCase("list") || args[0].equalsIgnoreCase("l"))
 				{
-					if(p.hasPermission("list"))
+					if(p.hasPermission("Clans.list"))
 					{
 						if(args.length != 1)
 						{
@@ -192,7 +192,7 @@ public class clanCmd implements CommandExecutor
 				//Kommando ally
 				if(args[0].equalsIgnoreCase("ally"))
 				{
-					if(p.hasPermission("relations"))
+					if(p.hasPermission("Clans.relations"))
 					{
 						ally.addally(p, args);
 					} else
@@ -204,7 +204,7 @@ public class clanCmd implements CommandExecutor
 				//Kommando war
 				if(args[0].equalsIgnoreCase("war"))
 				{
-					if(p.hasPermission("relations"))
+					if(p.hasPermission("Clans.relations"))
 					{
 						war.declwar(p, args);
 					} else
@@ -216,7 +216,7 @@ public class clanCmd implements CommandExecutor
 				//Kommando chat
 				if(args[0].equalsIgnoreCase("chat"))
 				{
-					if(p.hasPermission("chat"))
+					if(p.hasPermission("Clans.chat"))
 					{
 						chat.activate_chat(p, args);
 					} else
@@ -228,7 +228,7 @@ public class clanCmd implements CommandExecutor
 				//region command
 				if(args[0].equalsIgnoreCase("region") || args[0].equalsIgnoreCase("rg"))
 				{
-					if(p.hasPermission("region"))
+					if(p.hasPermission("Clans.region"))
 					{
 						region.exec_region(p, args);
 					} else

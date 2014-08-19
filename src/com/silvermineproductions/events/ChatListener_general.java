@@ -14,6 +14,7 @@ import com.silvermineproductions.jobs.getTitle;
 import com.silvermineproductions.jobs.getjob;
 import com.silvermineproductions.main.main;
 import com.silvermineproductions.member_functions.chat;
+import com.silvermineproductions.mysql.mysql;
 import com.silvermineproductions.mysql.mysqlcmd;
 
 public class ChatListener_general implements Listener 
@@ -30,7 +31,17 @@ public class ChatListener_general implements Listener
     	Player p = event.getPlayer();
     	
     	String message = "> " + event.getMessage();
-    	String format = getTitle.getJobTitle(p) + getjob.getJob(p) + "§f" + p.getDisplayName() + "> " + event.getMessage();
+    	
+    	String format = "";
+    	
+    	if(mysql.Jdb != "" || mysql.Jcon != null || Bukkit.getServer().getPluginManager().getPlugin("Jobs") != null)
+    	{
+    		format = getTitle.getJobTitle(p) + getjob.getJob(p) + "§f" + p.getDisplayName() + "> " + event.getMessage();
+    	}
+    	else
+    	{
+    		format = "§f" + p.getDisplayName() + "> " + event.getMessage();
+    	}
     	
     	Collection<? extends Player> collonline = Bukkit.getOnlinePlayers();
     	

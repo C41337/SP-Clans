@@ -1,4 +1,4 @@
-name: SP-Clans
+name: Clans
 main: com.silvermineproductions.main.main
 version: 1.1.1
 author: Silvermine Productions
@@ -16,6 +16,7 @@ permissions:
             Clans.del: true
             Clans.tag: true
             Clans.name: true
+            Clans.list: true
     Clans.create:
         description: create Clan
         default: op

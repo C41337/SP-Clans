@@ -27,7 +27,7 @@ public class main extends JavaPlugin
 		vault.setupChat();
 		
 		config.loadConfiguration(this);
-		System.out.print("[Clans] Enabled");
+		System.out.print("[SP-Clans] Enabled");
 		
 		clanCmd.name = this.getDescription().getName();
 		clanCmd.version = this.getDescription().getVersion();
