@@ -34,7 +34,7 @@ public class ChatListener_general implements Listener
     	
     	String format = "";
     	
-    	if(mysql.Jdb != "" || mysql.Jcon != null || Bukkit.getServer().getPluginManager().getPlugin("Jobs") != null)
+    	if(mysql.Jdb.length() > 0 && mysql.Jcon != null && Bukkit.getServer().getPluginManager().getPlugin("Jobs") != null)
     	{
     		format = getTitle.getJobTitle(p) + getjob.getJob(p) + "§f" + p.getDisplayName() + "> " + event.getMessage();
     	}

@@ -26,6 +26,7 @@ import com.silvermineproductions.member_functions.leave;
 import com.silvermineproductions.member_functions.list;
 import com.silvermineproductions.member_functions.request;
 import com.silvermineproductions.member_functions.show;
+import com.silvermineproductions.mysql.mysql;
 import com.silvermineproductions.regions.region;
 
 public class clanCmd implements CommandExecutor
@@ -240,7 +241,9 @@ public class clanCmd implements CommandExecutor
 				
 				if(args[0].equalsIgnoreCase("test"))
 				{
-					p.sendMessage(chat.chat.get(p));
+					p.sendMessage(String.valueOf(mysql.Jdb.length()));
+					System.out.println(mysql.Jcon);
+					System.out.println(mysql.con);
 					return true;
 				}
 				if(args[0].equalsIgnoreCase("loc"))
